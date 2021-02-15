@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:icons="clr-namespace:Calculator.Fonts"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Padding="0,5,0,0"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightModeBackground},Dark={StaticResource DarkModeBackground}}"
+             x:Class="Calculator.MainPage">
+
+    <Grid RowDefinitions="40,0.75*,2*">
+
+        <pancake:PancakeView Padding="5" 
+               CornerRadius="10" 
+               HorizontalOptions="Center"
+               BackgroundColor="{AppThemeBinding Light={StaticResource LightModeDarkerBackground}, Dark={StaticResource DarkModeLighterBackground}}">
+            
+            <StackLayout Orientation="Horizontal">
+                <pancake:PancakeView Padding="10,0"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding LightThemeCommand}">
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DisabledLight}}"
+                                FontFamily="AppIcons" Size="Title"
+                                Glyph="{x:Static icons:FontIcons.WeatherSunny}"
+                                />
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+                
+
+                <pancake:PancakeView Padding="10,0" 
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding DarkThemeCommand}">
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource DisabledDark},Dark={StaticResource DarkModeKeypadBackground}}"
+                                FontFamily="AppIcons" Size="Title"
+                                Glyph="{x:Static icons:FontIcons.MoonWaningCrescent}"
+                                />
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+                
+            </StackLayout>
+            
+        </pancake:PancakeView>
+
+        <StackLayout Grid.Row="1" Padding="20,0,30,0">
+
+            <Label Text="{Binding FirstNumberDisplay}" HorizontalTextAlignment="End"
+                    FontSize="30" VerticalOptions="EndAndExpand"
+                    TextColor="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource Disabled}}">
+                
+            </Label>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Operation}" HorizontalTextAlignment="Start"
+                    FontSize="30" HorizontalOptions="StartAndExpand" FontFamily="AppIcons"
+                    TextColor="{StaticResource LightRedForeground}">
+
+                </Label>
+                
+                <Label Text="{Binding InputDisplay}" HorizontalTextAlignment="End"
+                    FontSize="30"
+                    TextColor="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource Disabled}}">
+
+                </Label>
+            </StackLayout>
+
+            <Label Text="{Binding SolutionDisplay}"
+                   FontSize="50" HorizontalTextAlignment="End"
+                    TextColor="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"/>
+
+        </StackLayout>
+
+        <pancake:PancakeView Grid.Row="2" CornerRadius="50,50,0,0"
+                             Padding="25"
+                             Margin="0,15,0,0"
+                             BackgroundColor="{AppThemeBinding Light={StaticResource LightModeDarkerBackground}, Dark={StaticResource DarkModeLighterBackground}}">
+           
+            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*,*" 
+                  ColumnSpacing="15" RowSpacing="15">
+
+                <!--#region Row One-->
+                <!-- Clear -->
+                <pancake:PancakeView CornerRadius="25" Padding="15"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding BackspaceCommand}"
+                                     xct:TouchEffect.LongPressDuration="1000"
+                                     xct:TouchEffect.LongPressCommand="{Binding ClearScreenCommmand}"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{StaticResource LightGreenForeground}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.KeyboardBackspace}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Plus or Minus -->
+                <pancake:PancakeView CornerRadius="25" Padding="15" Grid.Row="0" Grid.Column="1"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{StaticResource LightGreenForeground}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.PlusMinusVariant}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Percent -->
+                <pancake:PancakeView CornerRadius="25" Padding="15" Grid.Row="0" Grid.Column="2"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{StaticResource LightGreenForeground}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Percent}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+                
+                <!-- Division -->
+                <pancake:PancakeView CornerRadius="25" Padding="15" Grid.Row="0" Grid.Column="3"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding OperationCommand}"
+                                     xct:TouchEffect.CommandParameter="/"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{StaticResource LightRedForeground}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Division}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!--#endregion-->
+                
+                <!--#region Row Two-->
+                <!-- Number 7 -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="1" Grid.Column="0"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="7"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric7}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Number 8 -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="1" Grid.Column="1"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="8"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric8}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Number 9 -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="1" Grid.Column="2"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="9"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric9}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+                
+                <!-- Multiplication -->
+                <pancake:PancakeView CornerRadius="25" Padding="15" Grid.Row="1" Grid.Column="3"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding OperationCommand}"
+                                     xct:TouchEffect.CommandParameter="*"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{StaticResource LightRedForeground}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Close}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!--#endregion-->
+                
+                <!--#region Row Three-->
+                
+                <!-- Number Four -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="2" Grid.Column="0"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="4"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric4}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Number 5 -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="2" Grid.Column="1"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="5"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric5}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Number 6 -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="2" Grid.Column="2"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="6"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric6}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+                
+                <!-- Minus -->
+                <pancake:PancakeView CornerRadius="25" Padding="15" Grid.Row="2" Grid.Column="3"
+                                     xct:TouchEffect.Command="{Binding OperationCommand}"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.CommandParameter="-"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{StaticResource LightRedForeground}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Minus}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!--#endregion-->
+                
+                <!--#region Row Four-->
+                
+                <!-- Number One -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="3" Grid.Column="0"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="1"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric1}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Number 2 -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="3" Grid.Column="1"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="2"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric2}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Number 3 -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="3" Grid.Column="2"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="3"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric3}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+                
+                <!-- Plus -->
+                <pancake:PancakeView CornerRadius="25" Padding="15" Grid.Row="3" Grid.Column="3"
+                                     xct:TouchEffect.Command="{Binding OperationCommand}"
+                                     xct:TouchEffect.CommandParameter="+"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{StaticResource LightRedForeground}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Plus}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!--#endregion-->
+                
+                <!--#region Row Five-->
+                
+                <!-- Number History -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="4" Grid.Column="0"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.History}"/>
+                        </Image.Source>
+                    </Image>
+                </pancake:PancakeView>
+
+                <!-- Number 0 -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="4" Grid.Column="1"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="0"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Numeric0BoxOutline}"/>
+                        </Image.Source>
+                    </Image>
+                    
+                </pancake:PancakeView>
+
+                <!-- Point -->
+                <pancake:PancakeView CornerRadius="25" Padding="10" Grid.Row="4" Grid.Column="2"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding NumericInputCommand}"
+                                     xct:TouchEffect.CommandParameter="."
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                   
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.CircleSmall}"/>
+                        </Image.Source>
+                    </Image>
+                    
+                </pancake:PancakeView>
+                
+                <!-- Equal -->
+                <pancake:PancakeView CornerRadius="25" Padding="15" Grid.Row="4" Grid.Column="3"
+                                     xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding EqualToCommand}"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
+
+                    <Image Aspect="AspectFit">
+                        <Image.Source>
+                            <FontImageSource Color="{StaticResource LightRedForeground}"
+                                             FontFamily="AppIcons"
+                                             Glyph="{x:Static icons:FontIcons.Equal}"/>
+                        </Image.Source>
+                    </Image>
+                    
+                </pancake:PancakeView>
+
+                <!--#endregion-->
+                
+            </Grid>
+            
+        </pancake:PancakeView>
+        
+    </Grid>
+
+</ContentPage>

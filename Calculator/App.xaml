@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculator.App">
+    <Application.Resources>
+        <Color x:Key="DarkModeBackground">#22252D</Color>
+        <Color x:Key="DarkModeKeypadBackground">#FEFEFE</Color>
+        <Color x:Key="DarkModeSolutionForeground">#272B33</Color>
+        <Color x:Key="DarkModeLighterBackground">#292D36</Color>
+        <Color x:Key="LightModeBackground">#FFFFFF</Color>
+        <Color x:Key="LightModeKeypadBackground">#E7E7E7</Color>
+        <Color x:Key="LightModeSolutionForeground">#2A2E37</Color>
+        <Color x:Key="LightModeDarkerBackground">#F9F9F9</Color>
+        <Color x:Key="LightGreenForeground">#26E9C6</Color>
+        <Color x:Key="LightRedForeground">#F77B7B</Color>
+        <Color x:Key="DisabledLight">#5D6067</Color>
+        <Color x:Key="DisabledDark">#E6E6E6</Color>
+        <Color x:Key="Disabled">#B4FFFFFF</Color>
+
+    </Application.Resources>
+</Application>
