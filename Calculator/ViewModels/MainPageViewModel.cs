@@ -27,6 +27,7 @@ namespace Calculator.ViewModel
         public Command<string> NumericInputCommand { get; }
         public Command<string> OperationCommand { get; }
         public Command BackspaceCommand { get; }
+        public Command PlusMinusCommand { get; }
         public Command ClearScreenCommmand { get; }
         public Command EqualToCommand { get; }
         public Command LightThemeCommand { get; }
@@ -91,6 +92,7 @@ namespace Calculator.ViewModel
             NumericInputCommand = new Command<string>(NumericValue);
             OperationCommand = new Command<string>(OperationValue);
             EqualToCommand = new Command(OnEqualTo);
+            PlusMinusCommand = new Command(OnPlusMinus);
             BackspaceCommand = new Command(OnBackspace);
             ClearScreenCommmand = new Command(OnClearAll);
             LightThemeCommand = new Command(LightTheme);
@@ -121,7 +123,19 @@ namespace Calculator.ViewModel
             }
 
         }
-        
+
+        private void OnPlusMinus()
+        {
+            if (InputDisplay.Contains("-"))
+            {
+                InputDisplay = InputDisplay.Remove(0, 1);
+            }
+            else
+            {
+                InputDisplay = "-" + InputDisplay;
+            }
+        }
+
         private void OperationValue(string input)
         {
 

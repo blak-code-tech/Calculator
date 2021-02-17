@@ -51,7 +51,7 @@
         <StackLayout Grid.Row="1" Padding="20,0,30,0">
 
             <Label Text="{Binding FirstNumberDisplay}" HorizontalTextAlignment="End"
-                    FontSize="30" VerticalOptions="EndAndExpand"
+                    FontSize="30" VerticalOptions="EndAndExpand" MaxLines="1"
                     TextColor="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource Disabled}}">
                 
             </Label>
@@ -64,14 +64,14 @@
                 </Label>
                 
                 <Label Text="{Binding InputDisplay}" HorizontalTextAlignment="End"
-                    FontSize="30"
+                    FontSize="30" MaxLines="1"
                     TextColor="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource Disabled}}">
 
                 </Label>
             </StackLayout>
 
             <Label Text="{Binding SolutionDisplay}"
-                   FontSize="50" HorizontalTextAlignment="End"
+                   FontSize="50" HorizontalTextAlignment="End" MaxLines="1"
                     TextColor="{AppThemeBinding Light={StaticResource LightModeSolutionForeground},Dark={StaticResource DarkModeKeypadBackground}}"/>
 
         </StackLayout>
@@ -106,6 +106,7 @@
                 <!-- Plus or Minus -->
                 <pancake:PancakeView CornerRadius="25" Padding="15" Grid.Row="0" Grid.Column="1"
                                      xct:TouchEffect.NativeAnimation="True"
+                                     xct:TouchEffect.Command="{Binding PlusMinusCommand}"
                                      BackgroundColor="{AppThemeBinding Light={StaticResource LightModeKeypadBackground}, Dark={StaticResource DarkModeSolutionForeground}}">
 
                    
